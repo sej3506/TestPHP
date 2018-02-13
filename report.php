@@ -24,7 +24,6 @@
 			$to = 'csarajackson@gmail.com';
 			$subject = 'Aliens Abducted Me - Abduction Report';
 			
-			echo $msg;
 			echo 'Thanks for submitting the form.<br />'; 
 			echo 'You were abducted ' . $when_it_happened; 
 			echo ' and were gone for ' . $how_long . '<br />'; 
@@ -34,6 +33,8 @@
 			echo 'Was Fang there? ' . $fang_spotted . '<br />'; 
 			echo 'Other comments: ' . $other . '<br />';
 			echo 'Your email address is ' . $email; 
+			
+			mail($to, $subject, $msg, 'From:' . $email);
 		?> 
 	</body>
 </html>
