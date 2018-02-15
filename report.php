@@ -5,6 +5,9 @@
 	<body>
 		<h2>Aliens Abducted Me - Report an Abduction</h2> 
 		<?php 
+			$dbc = mysqli_connect('localhost', 'sara', 'happyappleday', 'aliendatabase')
+				or die('Error connecting to MySQL server.');
+				
 			$when_it_happened = $_POST['whenithappened']; 
 			$how_long = $_POST['howlong']; 
 			$alien_description = $_POST['aliendescription']; 
@@ -14,15 +17,14 @@
 			$how_many = $_POST['howmany'];
 			$what_they_did = $_POST['whattheydid'];
 			$other = $_POST['other'];
-			$msg = "$name was abducted $when_it_happened and was gone for " .
-				"$how_long." . 
-				"\nNumber of aliens: $how_many" .
-				"\nAlien description: $alien_description" .
-				"\nWhat they did: $what_they_did" . 
-				"\nFang spotted: $fang_spotted" .
-				"\nOther comments: $other";
-			$to = 'csarajackson@gmail.com';
-			$subject = 'Aliens Abducted Me - Abduction Report';
+			
+			$query = "INSERT INTO aliens_abduction (first_name, last_name, " .
+				"when_it_happened, how_long, how_many, alien_description, " .
+				"what_they_did, fang_spotted, other, email) " .
+				"VALUES ('Sara', 'Jackson', '3 days ago', '1 day', 'four', " .
+				"'green with six tentacles', 'We just talked and played with a dog', " .
+				"'yes', 'I may have seen your dog. Contact me.', " .
+				"'sally@gregs-list.net')";
 			
 			echo 'Thanks for submitting the form.<br />'; 
 			echo 'You were abducted ' . $when_it_happened; 
@@ -34,7 +36,10 @@
 			echo 'Other comments: ' . $other . '<br />';
 			echo 'Your email address is ' . $email; 
 			
-			mail($to, $subject, $msg, 'From:' . $email);
+			$result = mysqli_query($dbc, $query)
+				or die('Error querying database');
+				
+			mysqli_close($dbc);
 		?> 
 	</body>
 </html>
