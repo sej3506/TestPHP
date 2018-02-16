@@ -13,18 +13,16 @@
 			$alien_description = $_POST['aliendescription']; 
 			$fang_spotted = $_POST['fangspotted']; 
 			$email = $_POST['email']; 
-			$name = $_POST['firstname'] . " " . $_POST['lastname'];
+			$first_name = $_POST['firstname'];
+			$last_name = $_POST['lastname'];
 			$how_many = $_POST['howmany'];
 			$what_they_did = $_POST['whattheydid'];
 			$other = $_POST['other'];
 			
-			$query = "INSERT INTO aliens_abduction (first_name, last_name, " .
-				"when_it_happened, how_long, how_many, alien_description, " .
-				"what_they_did, fang_spotted, other, email) " .
-				"VALUES ('Sara', 'Jackson', '3 days ago', '1 day', 'four', " .
-				"'green with six tentacles', 'We just talked and played with a dog', " .
-				"'yes', 'I may have seen your dog. Contact me.', " .
-				"'sally@gregs-list.net')";
+			$query = "INSERT INTO aliens_abduction (first_name, last_name, when_it_happened, how_long, " .
+				"how_many, alien_description, what_they_did, fang_spotted, other, email) " .
+				"VALUES ('$first_name', '$last_name', '$when_it_happened', '$how_long', '$how_many', " .
+				"'$alien_description', '$what_they_did', '$fang_spotted', '$other', '$email')";
 			
 			echo 'Thanks for submitting the form.<br />'; 
 			echo 'You were abducted ' . $when_it_happened; 
